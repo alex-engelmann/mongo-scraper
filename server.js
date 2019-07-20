@@ -1,6 +1,7 @@
 var express = require("express");
 var logger = require("morgan");
 var mongoose = require("mongoose");
+var exphbs = require("express-handlebars");
 
 // Our scraping tools
 // Axios is a promised-based http library, similar to jQuery's Ajax method
@@ -11,10 +12,14 @@ var cheerio = require("cheerio");
 // Require all models
 var db = require("./models");
 
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
 
 // Initialize Express
 var app = express();
+
+// Set Handlebars as the default templating engine.
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 // Configure middleware
 
@@ -31,7 +36,12 @@ mongoose.connect("mongodb://localhost/arstechnica-scrape", { useNewUrlParser: tr
 
 // Routes
 
-// A GET route for scraping the echoJS website
+app.get("/", function(req, res) {
+  res.render("all-articles")
+})
+
+
+// A GET route for scraping the Arstechnica website
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with axios
   axios.get("https://www.arstechnica.com/").then(function(response) {
