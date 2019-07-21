@@ -8,6 +8,13 @@ $.getJSON("/articles", function(data) {
   }
 });
 
+$(document).on("click", "#scrape", function(e){
+  e.preventDefault();
+  $.get("/scrape").then(function(res){
+    JSON.parse(res);
+  })
+})
+
 
 // Whenever someone clicks a p tag
 $(document).on("click", "p", function() {
@@ -31,7 +38,8 @@ $(document).on("click", "p", function() {
       // A textarea to add a new note body
       $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
       // A button to submit a new note, with the id of the article saved to it
-      $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+      $("#notes").append("<button class='btn btn-primary btn-lg'data-id='" +
+       data._id + "' id='savenote'>Save Note</button>");
 
       // If there's a note in the article
       if (data.note) {
@@ -62,7 +70,7 @@ $(document).on("click", "#savenote", function() {
     // With that done
     .then(function(data) {
       // Log the response
-      console.log(data);
+      // console.log(data);
       // Empty the notes section
       $("#notes").empty();
     });

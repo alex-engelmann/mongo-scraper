@@ -40,7 +40,6 @@ app.get("/", function(req, res) {
   res.render("all-articles")
 })
 
-
 // A GET route for scraping the Arstechnica website
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with axios
