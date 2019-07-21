@@ -8,19 +8,22 @@
 </head>
 
 <body>
-	<h1>Mongo Scraper</h1>
-	<h3>This Express app will scrape news articles from the tech
-		news site Arstechnica and allow anyone to make comments on each one</h3>
-	<button class="btn btn-primary btn-lg" id="scrape">Scrape Articles</button>
+	<div class="jumbotron">
+		<h1 class="display-4">Mongo Scraper</h1>
+		<p class="lead">This Express app scrapes news articles from the tech
+			news site Arstechnica and allows anyone to make comments on each one</p>
+	</div>
+
+	{{!-- <button class="btn btn-primary btn-lg" id="scrape">Scrape Articles</button> --}}
 	<div id="wrapper">
 
-		<h2>Scraped articles:</h2>
+		<h5>Scraped articles:</h5>
 		{{{ body }}}
 	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
 	<script src="app.js"></script>
-	
+
 </body>
 
 </html>
