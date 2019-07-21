@@ -31,8 +31,11 @@ app.use(express.json());
 // Make public a static folder
 app.use(express.static("public"));
 
-// Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/arstechnica-scrape", { useNewUrlParser: true });
+
+// If deployed, use the deployed database. Otherwise use the local database
+var MONGODB_URI = process.env.MONGODB_URI || ("mongodb://localhost/arstechnica-scrape", {useNewUrlParser: true});
+
+mongoose.connect(MONGODB_URI);
 
 // Routes
 
